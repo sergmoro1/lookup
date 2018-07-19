@@ -1,18 +1,23 @@
-<h1>Yii2 module for lookup dictionary</h1>
+<h1>Yii2 module for lookup enumeration values</h1>
 
 <h2>Advantages</h2>
+Some fields can has enumeration values (status: Draft (1), Published (2), Archived (3)).
 
-Any dictionaries can be stored and used after that in a <code>Lookup</code> table. Values can be added or modified by migrations 
-(You can see an example in <code>sergmoro1/yii2-user</code>).
+Values can be added or modified by migrations or by interface. 
+In a last case add lookup to the sidebar in <code>backend/config/params.php</code>:
 
-<h2>Fields description</h2>
-<ul>
-  <li>id;</li>
-  <li>name <code>string</code> - displayed name;</li>
-  <li>code <code>integer</code> - code for saving in a model;</li>
-  <li>type <code>string</code> - name of a group of values (for example <code>PostStatus</code>);</li>
-  <li>position <code>integer</code> - value position in a list.</li>
-</ul>
+<pre>
+<?php
+$sidebar = array_merge(
+    require(__DIR__ . '/../../vendor/sergmoro1/yii2-blog-tools/src/config/sidebar.php'),
+    require(__DIR__ . '/../../vendor/sergmoro1/yii2-user/src/config/sidebar.php'),
+    require(__DIR__ . '/../../vendor/sergmoro1/yii2-lookup/src/config/sidebar.php')
+);
+return [
+  ...
+  'sidebar' => $sidebar,
+];
+</pre>
 
 <h2>Installation</h2>
 
@@ -22,14 +27,7 @@ In app directory:
 $ composer require sergmoro1/yii2-lookup "dev-master"
 </pre>
 
-Run migration:
-<pre>
-$ php yii migrate --migrationPath=@vendor/sergmoro1/yii2-lookup/migrations
-</pre>
-
-<h2>Usage</h2>
-
-In a module, that need a <code>Lookup</code>, add to requre section of <code>composer.json</code>:
+or add to requre section of <code>composer.json</code>.
 
 <pre>
     "require": {
@@ -39,4 +37,27 @@ In a module, that need a <code>Lookup</code>, add to requre section of <code>com
     },
 </pre>
 
-and create a migration with a new group (or groups) of values of dictionaries.
+Run migration:
+<pre>
+$ php yii migrate --migrationPath=@vendor/sergmoro1/yii2-lookup/migrations
+</pre>
+
+<h2>Usage</h2>
+
+All items by property.
+
+<pre> 
+// by property name
+Lookup::items('PostStatus');
+// by property ID
+Lookup::items(1, true);
+</pre>
+
+The name of concrete item.
+
+<pre> 
+// by property name and code
+Lookup::item('PostStatus', $data->status);
+// by property ID and code
+Lookup::item(1, $data->status, true);
+</pre>
