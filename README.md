@@ -7,7 +7,7 @@ Values can be added or modified by migrations or by interface.
 In a last case add lookup to the sidebar in <code>backend/config/params.php</code>:
 
 <pre>
-<?php
+&lt;?php
 $sidebar = array_merge(
     require(__DIR__ . '/../../vendor/sergmoro1/yii2-blog-tools/src/config/sidebar.php'),
     require(__DIR__ . '/../../vendor/sergmoro1/yii2-user/src/config/sidebar.php'),
@@ -15,7 +15,7 @@ $sidebar = array_merge(
 );
 return [
   ...
-  'sidebar' => $sidebar,
+  'sidebar' =&gt; $sidebar,
 ];
 </pre>
 
@@ -30,11 +30,11 @@ $ composer require sergmoro1/yii2-lookup "dev-master"
 or add to requre section of <code>composer.json</code>.
 
 <pre>
-    "require": {
-        ...
-        "sergmoro1/yii2-lookup" : "*",
-        ...
-    },
+  "require": {
+    ...
+    "sergmoro1/yii2-lookup" : "*",
+    ...
+  },
 </pre>
 
 Run migration:
