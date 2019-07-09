@@ -7,9 +7,10 @@ use yii\db\Migration;
  */
 class m180704_105455_create_property extends Migration
 {
-    const TABLE = '{{%property}}';
+    private const TABLE_LOOKUP   = '{{%lookup}}';
+    private const TABLE_PROPERTY = '{{%property}}';
     
-    public function up()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -17,13 +18,15 @@ class m180704_105455_create_property extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable(self::TABLE, [
-            'id' => $this->primaryKey(),
-            'name' => $this->string(255)->notNull(),
+        $this->createTable(static::TABLE_PROPERTY, [
+            'id'    => $this->primaryKey(),
+            'name'  => $this->string(256)->notNull(),
         ], $tableOptions);
+
+        $this->addForeignKey ('fk-lookup-property', static::TABLE_LOOKUP, 'property_id', static::TABLE_PROPERTY, 'id', 'CASCADE');
     }
 
-    public function down()
+    public function safeDown()
     {
-        $this->dropTable(self::TABLE);
+        $this->dropTable(static::TABLE_PROPERTY);
     }}
