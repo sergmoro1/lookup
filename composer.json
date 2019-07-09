@@ -1,6 +1,5 @@
 {
     "name": "sergmoro1/yii2-lookup",
-    "version": "1.0.0",
     "description": "Dictionary for seldom changed items.",
     "keywords": [
         "yii2",
