@@ -1,6 +1,8 @@
-#Yii2 module for lookup enumeration values
+Yii2 module for lookup enumeration values
+=========================================
 
-##Advantages
+Advantages
+----------
 
 Fields can has enumeration values. For exaple
 
@@ -15,7 +17,8 @@ If the number of enumerable values is limited, it is convenient to store them in
 
 Values for modules can be added by migrations or by interface. 
 
-##Installation
+Installation
+------------
 
 The preferred way to install this extension is through composer.
 
@@ -32,7 +35,8 @@ to the require section of your composer.json.
 Run migration
 `php yii migrate --migrationPath=@vendor/sergmoro1/yii2-lookup/migrations`
 
-##Usage
+Usage
+-----
 
 Values for modules can be added by migrations or by interface.
 
