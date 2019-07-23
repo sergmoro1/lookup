@@ -1,11 +1,13 @@
 <?php
+namespace sergmoro1\lookup\migrations;
 
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m160206_155004_create_lookup extends Migration
+class m160206_165004_create_lookup extends Migration
 {
     private const TABLE_LOOKUP = '{{%lookup}}';
+    private const TABLE_PROPERTY = '{{%property}}';
     
     public function safeUp()
     {
@@ -18,13 +20,15 @@ class m160206_155004_create_lookup extends Migration
         $this->createTable(static::TABLE_LOOKUP, [
             'id'          => $this->primaryKey(),
             'name'        => $this->string(128)->notNull(),
-            'property_id' => $this->string(128)->notNull(),
+            'property_id' => $this->integer()->notNull(),
             'code'        => $this->integer()->notNull(),
             'position'    => $this->integer()->notNull(),
         ], $tableOptions);
         
         $this->createIndex('idx-property',      static::TABLE_LOOKUP, 'property_id');
         $this->createIndex('idx-property-code', static::TABLE_LOOKUP, ['property_id', 'code']);
+
+        $this->addForeignKey ('fk-lookup-property', static::TABLE_LOOKUP, 'property_id', static::TABLE_PROPERTY, 'id', 'CASCADE');
     }
 
     public function safeDown()
