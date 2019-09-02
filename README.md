@@ -4,7 +4,7 @@ Yii2 module for lookup enumeration values
 Advantages
 ----------
 
-Fields can has enumeration values. For exaple for a Post Status:
+Fields can has enumeration values. For exaple for a post status:
 
 ```php
 'status' => [
