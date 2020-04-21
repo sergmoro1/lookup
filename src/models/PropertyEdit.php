@@ -10,9 +10,9 @@ use sergmoro1\lookup\Module;
 
 class PropertyEdit extends Property
 {
-	private static $_items = [];
-	const BARRIER = 100; // From this ID property can be modified, before BARRIER all values added by migrations
-	
+    private static $_items = [];
+    const BARRIER = 100; // From this ID property can be modified, before BARRIER all values added by migrations
+    
     /**
      * @return array validation rules for model attributes.
      */
@@ -37,12 +37,12 @@ class PropertyEdit extends Property
     }
     
     public static function items() {
-		if(self::$_items)
-		    return self::$_items;
-		foreach(self::find()->where('id >= ' . self::BARRIER)->all() as $item)
-		    self::$_items[$item->id] = $item->name;
-		return self::$_items;
-	}
+        if(self::$_items)
+            return self::$_items;
+        foreach(self::find()->where('id >= ' . self::BARRIER)->all() as $item)
+            self::$_items[$item->id] = $item->name;
+        return self::$_items;
+    }
 
     /**
      * This is invoked before the record is saved.
@@ -52,8 +52,8 @@ class PropertyEdit extends Property
     {
         if(parent::beforeSave($insert))
         {
-			if(!$this->id && self::find()->orderBy(['id' => SORT_DESC])->one()->id < self::BARRIER)
-			    $this->id = self::BARRIER;
+            if(!$this->id && self::find()->orderBy(['id' => SORT_DESC])->one()->id < self::BARRIER)
+                $this->id = self::BARRIER;
             return true;
         }
         else

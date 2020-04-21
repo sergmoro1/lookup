@@ -33,7 +33,7 @@ or add
 to the require section of your composer.json.
 
 Run migration
-`php yii migrate --migrationPath=@vendor/sergmoro1/yii2-lookup/migrations`
+`php yii migrate --migrationPath=@vendor/sergmoro1/yii2-lookup/src/migrations`
 
 Usage
 -----

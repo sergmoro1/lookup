@@ -10,14 +10,14 @@ use yii\db\ActiveRecord;
 
 class Property extends ActiveRecord
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return CActiveRecord the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return CActiveRecord the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
     /**
      * @return string the associated database table name
@@ -34,7 +34,7 @@ class Property extends ActiveRecord
      */
     public static function getId($name) {
         return self::findOne(['name' => $name])->id;
-	}
+    }
 
     /**
      * Get all property values as array with Code or Position as index.
@@ -43,15 +43,15 @@ class Property extends ActiveRecord
      * @return array
      */
     public static function getValues($name, $index = 'code') {
-		if($property_id = self::getId($name)) {
-			$a = [];
-			foreach(Lookup::find()
-				->select(['position', 'name'])
-				->where(['property_id' => $property_id])
-				->orderBy($index)->all() as $item)
-				$a[$item->$index] = $item->name;
-			return $a;
-		} else
-			return null;
-	}
+        if($property_id = self::getId($name)) {
+            $a = [];
+            foreach(Lookup::find()
+                ->select(['position', 'name'])
+                ->where(['property_id' => $property_id])
+                ->orderBy($index)->all() as $item)
+                $a[$item->$index] = $item->name;
+            return $a;
+        } else
+            return null;
+    }
 }
