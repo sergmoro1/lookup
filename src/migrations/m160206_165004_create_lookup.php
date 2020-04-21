@@ -27,10 +27,10 @@ class m160206_165004_create_lookup extends Migration
 
         $this->addForeignKey ('fk-lookup-property', self::TABLE, 'property_id', '{{%property}}', 'id', 'restrict', 'restrict');
 
-		$this->addCommentOnColumn(self::TABLE, 'name',        'Property value name');
-		$this->addCommentOnColumn(self::TABLE, 'property_id', 'Property');
-		$this->addCommentOnColumn(self::TABLE, 'code',        'Value code');
-		$this->addCommentOnColumn(self::TABLE, 'position',    'Position of value in a list');
+        $this->addCommentOnColumn(self::TABLE, 'name',        'Property value name');
+        $this->addCommentOnColumn(self::TABLE, 'property_id', 'Property');
+        $this->addCommentOnColumn(self::TABLE, 'code',        'Value code');
+        $this->addCommentOnColumn(self::TABLE, 'position',    'Position of value in a list');
     }
 
     public function safeDown()

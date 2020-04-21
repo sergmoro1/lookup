@@ -22,7 +22,7 @@ class m160206_155455_create_property extends Migration
             'name' => $this->string()->notNull(),
         ], $tableOptions);
 
-		$this->addCommentOnColumn(self::TABLE, 'name', 'Property name');
+        $this->addCommentOnColumn(self::TABLE, 'name', 'Property name');
     }
 
     public function safeDown()
