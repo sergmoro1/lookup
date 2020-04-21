@@ -17,7 +17,7 @@ class m160206_155455_create_property extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable(static::TABLE, [
+        $this->createTable(self::TABLE, [
             'id'   => $this->primaryKey(),
             'name' => $this->string()->notNull(),
         ], $tableOptions);
@@ -27,5 +27,6 @@ class m160206_155455_create_property extends Migration
 
     public function safeDown()
     {
-        $this->dropTable(static::TABLE);
-    }}
+        $this->dropTable(self::TABLE);
+    }
+}
